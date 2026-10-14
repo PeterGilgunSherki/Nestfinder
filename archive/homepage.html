@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NestFinder | Find Your Better Home</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS Reset & Variables --- */
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #0f172a;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Navigation --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Search Bar Widget */
+        .search-container {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) auto;
+            gap: 1rem;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .search-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            padding: 0 0.5rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .search-group:nth-child(4) {
+            border-right: none;
+        }
+
+        .search-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .search-group select, .search-group input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: var(--secondary);
+            font-weight: 500;
+            background: transparent;
+            width: 100%;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* --- Core Features Section --- */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        /* --- Featured Listings --- */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .listing-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        .listing-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Placeholder background images using Unsplash */
+        .img-1 { background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=500&q=80'); }
+        .img-2 { background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=500&q=80'); }
+        .img-3 { background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=500&q=80'); }
+
+        .tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .listing-content {
+            padding: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .listing-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .details span i {
+            margin-right: 0.25rem;
+            color: var(--secondary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--secondary);
+            color: #94a3b8;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 3rem;
+        }
+
+        .footer-info .logo {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 968px) {
+            .search-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            .search-group:nth-child(2) {
+                border-right: none;
+            }
+            .search-btn {
+                grid-column: span 2;
+                justify-content: center;
+            }
+            .features-grid, .listings-grid, .footer-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-house-chimney-window"></i> NestFinder
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Why Us</a></li>
+                <li><a href="#listings">Explore</a></li>
+                <li><a href="#">Neighborhoods</a></li>
+                <li><a href="#" class="btn-primary">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find a <span>Better Home</span> That Fits Your Life</h1>
+            <p>We look beyond the floor plans to match you with a neighborhood, a community, and a space where you will actually thrive.</p>
+            
+            <!-- Dynamic Search Widget -->
+            <div class="search-container">
+                <div class="search-group">
+                    <label>Location</label>
+                    <input type="text" placeholder="City, Zip, or Neighborhood" value="Austin, TX">
+                </div>
+                <div class="search-group">
+                    <label>Home Type</label>
+                    <select>
+                        <option>Single Family</option>
+                        <option>Townhouse</option>
+                        <option>Apartment</option>
+                        <option>Condo</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label>Price Range</label>
+                    <select>
+                        <option>$400k - $600k</option>
+                        <option>$600k - $900k</option>
+                        <option>$900k+</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label>Priority</label>
+                    <select>
+                        <option>Top School District</option>
+                        <option>Walkability</option>
+                        <option>Quiet Suburb</option>
+                        <option>Commute Friendly</option>
+                    </select>
+                </div>
+                <button class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why NestFinder (Features) -->
+    <section class="section" id="features">
+        <div class="section-header">
+            <h2>What Makes a Home "Better"?</h2>
+            <p>A great home is more than just square footage. It's about data-driven lifestyle matching.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>TrueCost™ Calculator</h3>
+                <p>We calculate hidden costs like HOA fees, property taxes, and average utilities so you know your actual monthly payment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-smile"></i></div>
+                <h3>Neighborhood Vibe Check</h3>
+                <p>Get real insights into neighborhood noise levels, walkability, traffic safety, and community culture before moving.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Smart Match Alerts</h3>
+                <p>Tell us your non-negotiables (e.g., backyard space, natural light, fast commute) and let our algorithm find the gems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="section" style="background-color: #ffffff; max-width: 100%; width: 100%; border-top: 1px solid var(--border);">
+        <div style="max-width: 1200px; margin: 0 auto;" id="listings">
+            <div class="section-header">
+                <h2>Highly Rated Matches Near You</h2>
+                <p>Based on affordability, building quality, and neighborhood satisfaction scores.</p>
+            </div>
+            <div class="listings-grid">
+                <!-- Card 1 -->
+                <div class="listing-card">
+                    <div class="listing-img img-1">
+                        <span class="tag">Top School District</span>
+                    </div>
+                    <div class="listing-content">
+                        <div class="price">$545,000</div>
+                        <h3 class="listing-title">The Willowcrest Estate</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> 742 Evergreen Terrace, Austin</div>
+                        <div class="details">
+                            <span><i class="fa-solid fa-bed"></i> 4 Beds</span>
+                            <span><i class="fa-solid fa-bath"></i> 3 Baths</span>
+                            <span><i class="fa-solid fa-ruler-combined"></i> 2,400 sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="listing-card">
+                    <div class="listing-img img-2">
+                        <span class="tag">Highly Walkable</span>
+                    </div>
+                    <div class="listing-content">
+                        <div class="price">$620,000</div>
+                        <h3 class="listing-title">Modern Urban Townhome</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> 112 Austin Blvd, Downtown</div>
+                        <div class="details">
+                            <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+                            <span><i class="fa-solid fa-bath"></i> 2.5 Baths</span>
+                            <span><i class="fa-solid fa-ruler-combined"></i> 1,950 sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="listing-card">
+                    <div class="listing-img img-3">
+                        <span class="tag">Quiet Neighborhood</span>
+                    </div>
+                    <div class="listing-content">
+                        <div class="price">$490,000</div>
+                        <h3 class="listing-title">Sunlit Mid-Century Modern</h3>
+                        <div class="location"><i class="fa-solid fa-location-dot"></i> 89 Pinecrest Way, West Lake</div>
+                        <div class="details">
+                            <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+                            <span><i class="fa-solid fa-bath"></i> 2 Baths</span>
+                            <span><i class="fa-solid fa-ruler-combined"></i> 1,700 sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-house-chimney-window"></i> NestFinder
+                </a>
+                <p>Helping you transition seamlessly into a place where you belong. Better homes for better lives.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Search</h4>
+                <ul>
+                    <li><a href="#">Buy a Home</a></li>
+                    <li><a href="#">Rent an Apartment</a></li>
+                    <li><a href="#">Find an Agent</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Mortgage Guide</a></li>
+                    <li><a href="#">Neighborhood Analytics</a></li>
+                    <li><a href="#">Moving Checklist</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 NestFinder Inc. All rights reserved. Built for a better tomorrow.
+        </div>
+    </footer>
+
+</body>
+</html>
