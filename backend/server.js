@@ -22,6 +22,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 app.use('/api/listings', listingRoutes);
 app.use('/api/requests', requestRoutes);
+app.get('/', (req, res) => {
+  res.send('NestFinder Backend is running successfully!');
+});
 
 app.use(errorHandler);
 
