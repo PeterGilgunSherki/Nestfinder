@@ -19,7 +19,7 @@ const Register = () => {
 
         setIsLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', { email, password, role });
+            const response = await axios.post('http://nestfinder-sxcw.onrender.com/api/auth/register', { email, password, role });
             loginUser(response.data.token, response.data.user);
             navigate('/dashboard'); // Route to dashboard after success
         } catch (err) {

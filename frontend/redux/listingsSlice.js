@@ -5,7 +5,7 @@ export const fetchListings = createAsyncThunk(
     'listings/fetchListings',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get('http://localhost:5000/api/listings');
+            const response = await axios.get('http://nestfinder-sxcw.onrender.com/api/listings');
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || error.message);

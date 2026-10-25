@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     const fetchListings = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/listings');
+            const res = await axios.get('https://nestfinder-sxcw.onrender.com/api/listings');
             if (user?.role === 'host' && userId) {
                 setMyListings(res.data.filter(item => item.user === userId || item.user?._id === userId));
             } else {
@@ -52,7 +52,7 @@ const Dashboard = () => {
     const fetchRequests = async () => {
         try {
             if (user?.role === 'host') {
-                const res = await axios.get(`http://localhost:5000/api/requests/host/${userId}`);
+                const res = await axios.get(`https://nestfinder-sxcw.onrender.com/api/requests/host/${userId}`);
                 setRequests(res.data);
             }
         } catch (err) {
@@ -67,7 +67,7 @@ const Dashboard = () => {
 
         try {
             await axios.post(
-                'http://localhost:5000/api/listings',
+                'https://nestfinder-sxcw.onrender.com/api/listings',
                 formData,
                 { headers: { Authorization: `Bearer ${userToken}` } }
             );
@@ -96,7 +96,7 @@ const Dashboard = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to remove this space?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/listings/${id}`, {
+            await axios.delete(`https://nestfinder-sxcw.onrender.com/api/listings/${id}`, {
                 headers: { Authorization: `Bearer ${userToken}` }
             });
             fetchListings();
@@ -107,7 +107,7 @@ const Dashboard = () => {
 
     const handleRequestSupport = async (listing) => {
         try {
-            await axios.post('http://localhost:5000/api/requests', {
+            await axios.post('https://nestfinder-sxcw.onrender.com/api/requests', {
                 listingId: listing._id,
                 seekerId: userId,
                 message: "Hello, I am requesting support for this safe space."

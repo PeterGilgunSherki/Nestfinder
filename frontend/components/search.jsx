@@ -39,7 +39,7 @@ const Search = () => {
 
     const fetchListings = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/listings');
+            const res = await axios.get('http://nestfinder-sxcw.onrender.com/api/listings');
             setListings(res.data);
         } catch (err) {
             console.error('Failed to load listings', err);
@@ -60,7 +60,7 @@ const Search = () => {
     }
 
     try {
-        await axios.post('http://localhost:5000/api/requests', {
+        await axios.post('http://nestfinder-sxcw.onrender.com/api/requests', {
             listingId: listing._id,
             seekerId: user?.id || user?._id, // Ensure user ID comes from AuthContext
             message: "Hello, I am requesting support for this safe space."

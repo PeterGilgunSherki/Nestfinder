@@ -22,7 +22,7 @@ const Login = () => {
 
         try {
             // Pass role along with email and password
-            const response = await axios.post('http://localhost:5000/api/auth/login', { email, password, role });
+            const response = await axios.post('http://nestfinder-sxcw.onrender.com/api/auth/login', { email, password, role });
             loginUser(response.data.token, response.data.user);
             navigate('/dashboard');
         } catch (err) {
